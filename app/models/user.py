@@ -1,7 +1,3 @@
-from sqlalchemy import Integer
-
-from app.models.api_key import ApiKey
-
 from app.config.database import Base
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import mapped_column, Mapped, relationship
@@ -17,4 +13,5 @@ class User(Base):
     hashed_password: Mapped[str] = mapped_column(String(255))
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())
 
-    api_keys: Mapped["ApiKey"] = relationship(back_populates="user")
+    api_keys: Mapped[list["ApiKey"]] = relationship(back_populates="user")
+    conversations: Mapped[list["Conversation"]] = relationship(back_populates="user")

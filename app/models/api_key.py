@@ -1,6 +1,5 @@
 from app.config.database import Base
 from datetime import datetime
-from app.models.user import User
 from sqlalchemy.sql import func 
 from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
