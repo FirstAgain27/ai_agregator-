@@ -31,6 +31,11 @@ class UserUpdate(BaseModel):
     password: Optional[str] = Field(None, min_length=8, max_length=100, description="Новый пароль")
 
 
+class UserLogin(BaseModel): 
+    email: EmailStr = Field(..., description="Электронная почта пользователя")
+    password: str = Field(..., min_length=8, max_length=100, description="Сырой пароль пользователя")
+
+
 class UserResponse(UserBase):
     """Схема для отдачи данных клиента наружу.
     Пароль сюда не включается из соображений безопасности.
