@@ -3,8 +3,14 @@ from typing import Any
 class FastApiUsersExceptions(Exception):
     pass
 
-class InvalidId(FastApiUsersExceptions): 
+class InvalidIdError(FastApiUsersExceptions): 
     pass 
 
-class UserAlreadyExists(FastApiUsersExceptions):
+class UserAlreadyExistsError(FastApiUsersExceptions):
     pass 
+
+class ProfileDoesNotExistsError(FastApiUsersExceptions):
+    pass
+
+class InvalidCredentialsError(FastApiUsersExceptions):
+    pass
