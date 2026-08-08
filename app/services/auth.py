@@ -1,6 +1,6 @@
 from repositories.user import UserRepository
 from sqlalchemy.ext.asyncio import AsyncSession
-from core.security import hash_password, verify_password, create_access_token
+from core.config.security import hash_password, verify_password, create_access_token
 from core.exceptions import UserAlreadyExistsError, InvalidCredentialsError
 from schemas.user import UserCreate, UserResponse, UserLogin
 from schemas.token import TokenResponse
@@ -16,7 +16,7 @@ class AuthService:
         # Пробуем получить объект по email
         existing = await self.user_repo.get_by_email(user_data.email)
         if existing:
-            raise UserAlreadyExistsError("Пользователь с таким email уже существует!")
+            raise UserAlreadyExistsError()
 
         hashed_pwd = hash_password(user_data.password)
 
