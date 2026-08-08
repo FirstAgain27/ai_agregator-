@@ -18,3 +18,9 @@ class InvalidCredentialsError(AppException):
 class ProfileNotFoundError(AppException):
     status_code = status.HTTP_404_NOT_FOUND
     message = "Пользователь не найден"
+
+class UserAlreadyExistsError(AppException):
+    status_code = status.HTTP_409_CONFLICT
+    message = "Пользователь с таким email уже зарегистрирован"
+
+    
