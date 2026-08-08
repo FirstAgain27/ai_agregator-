@@ -1,16 +1,20 @@
 from typing import Any
 
-class FastApiUsersExceptions(Exception):
-    pass
+from fastapi import status
 
-class InvalidIdError(FastApiUsersExceptions): 
-    pass 
+class AppException(Exception):
+    """Базовый класс для всех ошибок приложения."""
+    status_code: int = status.HTTP_400_BAD_REQUEST
+    message: str = "Произошла ошибка приложения"
 
-class UserAlreadyExistsError(FastApiUsersExceptions):
-    pass 
+    def __init__(self, message: str | None = None):
+        if message:
+            self.message = message
 
-class ProfileDoesNotExistsError(FastApiUsersExceptions):
-    pass
+class InvalidCredentialsError(AppException):
+    status_code = status.HTTP_401_UNAUTHORIZED
+    message = "Неверный логин или пароль"
 
-class InvalidCredentialsError(FastApiUsersExceptions):
-    pass
+class ProfileNotFoundError(AppException):
+    status_code = status.HTTP_404_NOT_FOUND
+    message = "Пользователь не найден"

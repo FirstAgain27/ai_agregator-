@@ -1,4 +1,4 @@
-from app.config.database import Base
+from core.config.database import Base
 from datetime import datetime
 from sqlalchemy.sql import func 
 from sqlalchemy import String, ForeignKey

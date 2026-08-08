@@ -1,4 +1,4 @@
-from app.config.database import Base
+from core.config.database import Base
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from sqlalchemy.sql import func
