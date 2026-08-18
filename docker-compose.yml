@@ -15,6 +15,8 @@ services:
       - .:/app
     env_file:
       - .env
+    environment:
+      - PYTHONPATH=/app/app
     container_name: agregator_app
     ports: 
       - "8000:8000"
