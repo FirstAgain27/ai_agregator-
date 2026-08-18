@@ -18,8 +18,14 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     """Схема для регистрации нового пользователя.
     Принимает сырой пароль, который бэкенд затем захэширует.
+    Также, принимает username пользователя
     """
-    password: str = Field(..., min_length=8, max_length=100, description="Сырой пароль пользователя")
+    password: str = Field(
+        ..., 
+        min_length=8, 
+        max_length=100, 
+        description="Сырой пароль пользователя"
+    )
 
 
 class UserUpdate(BaseModel):

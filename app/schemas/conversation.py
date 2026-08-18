@@ -1,7 +1,8 @@
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, computed_field
+from functools import cached_property
 from typing import Optional
 from datetime import datetime 
-from app.schemas.message import MessageResponse
+from schemas.message import MessageResponse
 
 
 class ConversationBase(BaseModel):

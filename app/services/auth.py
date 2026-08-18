@@ -13,16 +13,26 @@ class AuthService:
         self.session = session
 
     async def register_new_user(self, user_data: UserCreate) -> UserResponse:
-        # Пробуем получить объект по email
-        existing = await self.user_repo.get_by_email(user_data.email)
-        if existing:
-            raise UserAlreadyExistsError()
+        # Пробуем получить объект по email или username
+        existing_users = await self.user_repo.get_existing_for_registration(
+            email=user_data.email,
+            username=user_data.username
+        )
+
+        if existing_users:
+            for user in existing_users:
+                if user.email == user_data.email:
+                    raise UserAlreadyExistsError("Пользователь с таким email уже существует")
+                if user.username == user_data.username:
+                    raise UserAlreadyExistsError("Пользователь с таким username уже существует")
 
         hashed_pwd = hash_password(user_data.password)
 
         user = User(
             email=user_data.email,
-            hashed_password=hashed_pwd
+            username=user_data.username,
+            hashed_password=hashed_pwd,
+            is_active=True
         )
 
         user = await self.user_repo.add(user)

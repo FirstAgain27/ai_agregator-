@@ -21,6 +21,6 @@ class ProfileNotFoundError(AppException):
 
 class UserAlreadyExistsError(AppException):
     status_code = status.HTTP_409_CONFLICT
-    message = "Пользователь с таким email уже зарегистрирован"
+    message = "Пользователь с таким email или username уже зарегистрирован"
 
     
