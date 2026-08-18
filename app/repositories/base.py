@@ -27,7 +27,7 @@ class BaseRepository(Generic[ModelType]):
         return entity
 
     async def delete_by_id(self, id: int) -> bool:
-        entity = self.get_by_id(id)
+        entity = await self.get_by_id(id)
         if entity is not None:
             await self.session.delete(entity)
             return True 
