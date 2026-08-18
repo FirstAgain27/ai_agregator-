@@ -1,8 +1,11 @@
 from fastapi import FastAPI, Request 
 from fastapi.responses import JSONResponse
-from app.core.exceptions import AppException
+from core.exceptions import AppException
+from api.v1.auth import router as auth_router
 
 app = FastAPI(title="LLM Agregator")
+
+app.include_router(auth_router)
 
 @app.get("/health")
 def health():

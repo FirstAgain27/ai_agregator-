@@ -2,7 +2,7 @@ import asyncio
 from logging.config import fileConfig
 
 from core.config.settings import settings
-import app.models
+import models
 
 from sqlalchemy.ext.asyncio import async_engine_from_config
 from sqlalchemy import pool
@@ -13,7 +13,7 @@ from alembic import context
 config = context.config
 
 # Соединение с асинхронной БД
-config.set_main_option("sqlalchemy.url", settings.async_database_url)
+config.set_main_option("sqlalchemy.url", settings.ASYNC_DATABASE_URL)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -24,7 +24,7 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-target_metadata = app.models.Base.metadata
+target_metadata = models.Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
